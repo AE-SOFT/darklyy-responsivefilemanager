@@ -1,0 +1,41 @@
+{
+  "name": "darkeum/darklyy-responsivefilemanager",
+  "description": "Интеграция Responsive File Manager созданного Alberto Peripolli's с Darklyy",
+  "keywords": [
+    "darklyy",
+    "responsive",
+    "filemanager"
+  ],
+  "homepage": "https://github.com/darkeum/darklyy-responsivefilemanager",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Komarov Ivan",
+      "email": "ki@darkeum.ru",
+      "homepage": "https://darkeum.ru",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": "^8.0",
+    "darkeum/darklyy-package-tools": "^1.0.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Darkeum\\ResponsiveFileManager\\": "src/ResponsiveFileManager/",
+      "Darkeum\\FtpClient\\": "src/FtpClient/"
+    }
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "extra": {
+    "darklyy": {
+      "providers": [
+        "Darkeum\\ResponsiveFileManager\\FileManagerServiceProvider"
+      ]
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
