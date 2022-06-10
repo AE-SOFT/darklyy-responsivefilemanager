@@ -1,11 +1,11 @@
 <?php
 
 
-namespace Darkeum\FtpClient;
+namespace Darkeum\ResponsiveFileManager\FtpClient;
 
 use Countable as _Countable;
-use Darkeum\FtpClient\FtpWrapper;
-use Darkeum\FtpClient\FtpException;
+use Darkeum\ResponsiveFileManager\FtpClient\FtpWrapper;
+use Darkeum\ResponsiveFileManager\FtpClient\FtpException;
 
 /**
  * The FTP and SSL-FTP client for PHP.

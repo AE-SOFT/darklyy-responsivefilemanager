@@ -6,7 +6,6 @@ use \Illuminate\Support\Facades\App;
 use Darkeum\ResponsiveFileManager\RFM;
 
 session()->start();
-
 // Autorise user when first visiting dialog.php
 session()->put('RF.verify', "RESPONSIVEfilemanager");
 
@@ -14,7 +13,7 @@ $config = config('rfm');
 $version = config('rfm.version');
 
 if (!session()->get('RF.composerVersion')) {
-    $composerVersion = json_decode(file_get_contents(__DIR__ . '/../../composer.json'))->version;
+    $composerVersion = '1.0.0';
     session()->put('RF.composerVersion', $composerVersion);
 } else {
     $composerVersion = session()->get('RF.composerVersion');

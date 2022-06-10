@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Darkeum\FtpClient;
+namespace Darkeum\ResponsiveFileManager\FtpClient;
 
 /**
  * The FtpException class.

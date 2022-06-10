@@ -22,8 +22,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Darkeum\\ResponsiveFileManager\\": "src/ResponsiveFileManager/",
-      "Darkeum\\FtpClient\\": "src/FtpClient/"
+      "Darkeum\\ResponsiveFileManager\\": "src"
     }
   },
   "config": {
