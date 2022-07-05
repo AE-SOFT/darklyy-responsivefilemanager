@@ -22,17 +22,17 @@ $time = time();
 $vendor_path = parse_url(asset('public/vendor/responsivefilemanager') . '/')['path'];
 
 
-if (FM_USE_ACCESS_KEYS == true) {
-    if (!isset($_GET['akey'], $config['access_keys']) || empty($config['access_keys'])) {
-        die('Access Denied!');
-    }
+// if (FM_USE_ACCESS_KEYS == true) {
+//     if (!isset($_GET['akey'], $config['access_keys']) || empty($config['access_keys'])) {
+//         die('Access Denied!');
+//     }
 
-    $_GET['akey'] = strip_tags(preg_replace("/[^a-zA-Z0-9\._-]/", '', $_GET['akey']));
+//     $_GET['akey'] = strip_tags(preg_replace("/[^a-zA-Z0-9\._-]/", '', $_GET['akey']));
 
-    if (!in_array($_GET['akey'], $config['access_keys'])) {
-        die('Access Denied!');
-    }
-}
+//     if (!in_array($_GET['akey'], $config['access_keys'])) {
+//         die('Access Denied!');
+//     }
+// }
 
 if (isset($_POST['submit'])) {
     include __DIR__ . '/upload';
