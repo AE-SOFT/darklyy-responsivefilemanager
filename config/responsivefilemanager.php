@@ -672,3 +672,4 @@ $create_folder($upload_dir);
 $create_folder($current_path);
 $create_folder($thumbs_upload_dir);
 $create_folder($thumbs_base_path);
+

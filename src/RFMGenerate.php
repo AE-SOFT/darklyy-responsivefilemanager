@@ -1,30 +1,11 @@
 <?php
 namespace Darkeum\ResponsiveFileManager;
 
-/**
- * RFM command line Interface
- * Mostly used to generate RFM private key
- * @category RFMGenerate
- * @package  ResponsiveFileManager
- * @author   Jeremy Munsch <kwaadpepper@users.noreply.github.com>
- * @license  MIT https://choosealicense.com/licenses/mit/
- * @version  GIT:
- * @link     https://github.com/Kwaadpepper/laravel-responsivefilemanager/blob/master/src/RFMGenerate.php
- */
-
 use Boot\System\Console\Command;
 use Boot\System\Encryption\Encrypter;
 use Boot\System\Console\ConfirmableTrait;
 
-/**
- * RFM command line Interface
- * Mostly used to generate RFM private key
- * @category Class
- * @package  RFMGenerate
- * @author   Jeremy Munsch <kwaadpepper@users.noreply.github.com>
- * @license  MIT https://choosealicense.com/licenses/mit/
- * @link     https://github.com/Kwaadpepper/laravel-responsivefilemanager/blob/master/src/RFMGenerate.php
- */
+
 class RFMGenerate extends Command
 {
     use ConfirmableTrait;
@@ -34,14 +15,14 @@ class RFMGenerate extends Command
      * @var string
      */
     protected $signature = 'rfm:generate
-                    {--show : Display the key instead of modifying files}
-                    {--force : Force the operation to run when in production}';
+                    {--show : Отображать ключ вместо изменения файлов}
+                    {--force : Принудительное выполнение операции в рабочей среде}';
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Set Responsive File Manager private key';
+    protected $description = 'Установка приватного ключа Responsive File Manager';
     /**
      * Execute the console command.
      *
@@ -59,8 +40,8 @@ class RFMGenerate extends Command
         if (!$this->setKeyInEnvironmentFile($key)) {
             return;
         }
-        $this->laravel['config']['rfm.access_keys'] = [$key];
-        $this->info("RFM key [$key] set successfully.");
+        $this->laravel['config']['responsivefilemanager.access_keys'] = [$key];
+        $this->info("Ключ RFM [$key] записан успешно.");
     }
     /**
      * Generate a random key for the application.
@@ -69,7 +50,7 @@ class RFMGenerate extends Command
      */
     protected function generateRandomKey()
     {
-        $this->info('generating RFM key..');
+        $this->info('Идет генерация ключа RFM..');
         return hash(
             'sha256',
             Encrypter::generateKey($this->laravel['config']['app.cipher'])
@@ -84,8 +65,8 @@ class RFMGenerate extends Command
      */
     protected function setKeyInEnvironmentFile($key)
     {
-        $currentKey =   isset($this->laravel['config']['rfm.access_keys'][0]) ?
-                        $this->laravel['config']['rfm.access_keys'][0] : '';
+        $currentKey =   isset($this->laravel['config']['responsivefilemanager.access_keys'][0]) ?
+                        $this->laravel['config']['responsivefilemanager.access_keys'][0] : '';
         if (strlen($currentKey) !== 0 && (!$this->confirmToProceed())) {
             return false;
         }
@@ -104,7 +85,7 @@ class RFMGenerate extends Command
         $o = preg_match('/RFM_KEY=/', $file);
         switch ($o) {
             case 1:
-                $this->info('overwriting RFM key..');
+                $this->info('Идет перезапись ключа RFM..');
                 return file_put_contents(
                     $this->laravel->environmentFilePath(),
                     preg_replace(
@@ -114,14 +95,14 @@ class RFMGenerate extends Command
                     )
                 );
             case 0:
-                $this->info('writing RFM key..');
+                $this->info('Идет запись ключа RFM..');
                 return file_put_contents(
                     $this->laravel->environmentFilePath(),
                     PHP_EOL . 'RFM_KEY=' . $key . PHP_EOL,
                     FILE_APPEND | LOCK_EX
                 );
             default:
-                $this->error('Error reading .env file');
+                $this->error('Ошибка чтения .env файла');
                 return false;
         }
     }
@@ -132,8 +113,8 @@ class RFMGenerate extends Command
      */
     protected function keyReplacementPattern()
     {
-        $k =    isset($this->laravel['config']['rfm.access_keys'][0]) ?
-                $this->laravel['config']['rfm.access_keys'][0] : '';
+        $k =    isset($this->laravel['config']['responsivefilemanager.access_keys'][0]) ?
+                $this->laravel['config']['responsivefilemanager.access_keys'][0] : '';
         $escaped = preg_quote('=' . $k, '/');
         return "/^RFM_KEY{$escaped}/m";
     }

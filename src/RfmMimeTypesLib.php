@@ -259,22 +259,3 @@ class RfmMimeTypesLib
     }
 }
 
-
-/********************
- * The following code can be used to test the function.
- * First put a plain text file named "test.txt" and a
- * JPEG image file named "image.jpg" in the same folder
- * as this file.
- *
- * Simply remove the "REMOVE ME TO TEST" lines below to have
- * the code run when this file runs.
- *
- * Run the code with this command:
- * php mime_type_lib.php
- ********************/
-
-
-/* REMOVE ME TO TEST
-echo RfmMimeTypesLib::getFileMimeType( 'test.txt' ) . "\n";
-echo print_r( RfmMimeTypesLib::getFileMimeType( 'image.jpg', true ), true ) . "\n";
-REMOVE ME TO TEST */

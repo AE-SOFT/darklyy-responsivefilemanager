@@ -20,10 +20,9 @@ class FileManagerServiceProvider extends PackageServiceProvider
             // ->hasViewComponent('spatie', Alert::class)
             // ->hasViewComposer('*', MyViewComposer::class)
             // ->sharesDataWithAllViews('downloads', 3)
-            // ->hasTranslations()
-            // ->hasAssets()
-            // ->hasRoute('web')
-            // ->hasMigration('create_package_tables')
+            ->hasTranslations()
+            ->hasAssets()
+            ->hasRoute('web')
             ->hasCommand(RFMGenerate::class);
     }
 }
