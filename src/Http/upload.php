@@ -7,15 +7,15 @@ use Darkeum\ResponsiveFileManager\RFM;
 use Darkeum\ResponsiveFileManager\UploadHandler;
 use Darkeum\ResponsiveFileManager\RfmMimeTypesLib;
 
-$config = config('rfm');
+$config = config('responsivefilemanager');
 
 /**
  * Check RF session
  */
-if (!session()->exists('RF') || session('RF.verify') != "RESPONSIVEfilemanager") {
-    RFM::response(__('forbidden') . RFM::addErrorLocation(), 403)->send();
-    exit;
-}
+// if (!session()->exists('RF') || session('RF.verify') != "RESPONSIVEfilemanager") {
+//     RFM::response(__('forbidden') . RFM::addErrorLocation(), 403)->send();
+//     exit;
+// }
 
 try {
     $ftp = RFM::ftpCon($config);
@@ -184,7 +184,7 @@ try {
 } catch (_Exception $e) {
     $return = array();
 
-    if ($_FILES['files']) {
+    if (isset($_FILES['files']) && $_FILES['files']) {
         foreach ($_FILES['files']['name'] as $i => $name) {
             $return[] = array(
                 'name' => $name,

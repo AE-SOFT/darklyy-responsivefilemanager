@@ -1214,6 +1214,7 @@ $get_params = http_build_query($get_params);
                             }
                             if (!$ftp) {
                                 $file_path = '/' . $config['current_path'] . $rfm_subfolder . $subdir . $file;
+                                $file_path_view =  $config['upload_dir'] . $rfm_subfolder . $subdir . $file;
                                 //check if file have illegal caracter
 
                                 if ($file != RFM::fixFilename($file, $config)) {
@@ -1250,7 +1251,7 @@ $get_params = http_build_query($get_params);
                             $mini_src = "";
                             $src_thumb = "";
                             if (in_array($file_array['extension'], $config['ext_img'])) {
-                                $src = $file_path;
+                                $src = $file_path_view;
                                 $is_img = true;
 
                                 $img_width = $img_height = "";
@@ -1273,12 +1274,12 @@ $get_params = http_build_query($get_params);
                                     //check if is smaller than thumb
                                     list($img_width, $img_height, $img_type, $attr) = @getimagesize($file_path);
                                     if ($img_width < 122 && $img_height < 91) {
-                                        $src_thumb = $file_path;
+                                        $src_thumb = $file_path_view;
                                         $show_original = true;
                                     }
 
                                     if ($img_width < 45 && $img_height < 38) {
-                                        $mini_src = "/" . $config['current_path'] . $rfm_subfolder . $subdir . $file;
+                                        $mini_src =  $config['upload_dir'] . $rfm_subfolder . $subdir . $file;
                                         $show_original_mini = true;
                                     }
                                 }
@@ -1396,7 +1397,7 @@ $get_params = http_build_query($get_params);
                                                                     } ?></div>
                                         <div class='file-extension'><?php echo $file_array['extension']; ?></div>
                                         <figcaption>
-                                            <form action="force_download.php" method="post" class="download-form" id="form<?php echo $nu; ?>">
+                                            <form action="force_download" method="post" class="download-form" id="form<?php echo $nu; ?>">
                                                 <input type="hidden" name="path" value="<?php echo $rfm_subfolder . $subdir ?>" />
                                                 <input type="hidden" class="name_download" name="name" value="<?php echo $file ?>" />
                                                 <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>" />
@@ -1414,13 +1415,13 @@ $get_params = http_build_query($get_params);
                                                                                     echo "audio";
                                                                                 } else {
                                                                                     echo "video";
-                                                                                } ?>" title="<?php echo __('Preview') ?>" data-url="ajax_calls.php?action=media_preview&title=<?php echo $filename; ?>&file=<?php echo $rfm_subfolder . $subdir . $file; ?>" href="javascript:void('');"><i class=" icon-eye-open"></i></a>
+                                                                                } ?>" title="<?php echo __('Preview') ?>" data-url="ajax_calls?action=media_preview&title=<?php echo $filename; ?>&file=<?php echo $rfm_subfolder . $subdir . $file; ?>" href="javascript:void('');"><i class=" icon-eye-open"></i></a>
                                                 <?php } elseif (in_array($file_array['extension'], $config['cad_exts'])) { ?>
-                                                    <a class="tip-right file-preview-btn" title="<?php echo __('Preview') ?>" data-url="ajax_calls.php?action=cad_preview&title=<?php echo $filename; ?>&file=<?php echo $rfm_subfolder . $subdir . $file; ?>" href="javascript:void('');"><i class=" icon-eye-open"></i></a>
+                                                    <a class="tip-right file-preview-btn" title="<?php echo __('Preview') ?>" data-url="ajax_calls?action=cad_preview&title=<?php echo $filename; ?>&file=<?php echo $rfm_subfolder . $subdir . $file; ?>" href="javascript:void('');"><i class=" icon-eye-open"></i></a>
                                                 <?php } elseif ($config['preview_text_files'] && in_array($file_array['extension'], $config['previewable_text_file_exts'])) { ?>
-                                                    <a class="tip-right file-preview-btn" title="<?php echo __('Preview') ?>" data-url="ajax_calls.php?action=get_file&sub_action=preview&preview_mode=text&title=<?php echo $filename; ?>&file=<?php echo $rfm_subfolder . $subdir . $file; ?>" href="javascript:void('');"><i class=" icon-eye-open"></i></a>
+                                                    <a class="tip-right file-preview-btn" title="<?php echo __('Preview') ?>" data-url="ajax_calls?action=get_file&sub_action=preview&preview_mode=text&title=<?php echo $filename; ?>&file=<?php echo $rfm_subfolder . $subdir . $file; ?>" href="javascript:void('');"><i class=" icon-eye-open"></i></a>
                                                 <?php } elseif ($config['googledoc_enabled'] && in_array($file_array['extension'], $config['googledoc_file_exts'])) { ?>
-                                                    <a class="tip-right file-preview-btn" title="<?php echo __('Preview') ?>" data-url="ajax_calls.php?action=get_file&sub_action=preview&preview_mode=google&title=<?php echo $filename; ?>&file=<?php echo $rfm_subfolder . $subdir . $file; ?>" href="docs.google.com;"><i class=" icon-eye-open"></i></a>
+                                                    <a class="tip-right file-preview-btn" title="<?php echo __('Preview') ?>" data-url="ajax_calls?action=get_file&sub_action=preview&preview_mode=google&title=<?php echo $filename; ?>&file=<?php echo $rfm_subfolder . $subdir . $file; ?>" href="docs.google.com;"><i class=" icon-eye-open"></i></a>
                                                 <?php } else { ?>
                                                     <a class="preview disabled"><i class="icon-eye-open icon-white"></i></a>
                                                 <?php } ?>
@@ -1572,7 +1573,7 @@ $get_params = http_build_query($get_params);
                     newURL = imageEditor.toDataURL();
                     $.ajax({
                         type: "POST",
-                        url: "ajax_calls.php?action=save_img",
+                        url: "ajax_calls?action=save_img",
                         data: {
                             url: newURL,
                             path: $('#sub_folder').val() + $('#fldr_value').val(),

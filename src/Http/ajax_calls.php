@@ -6,8 +6,8 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use ZipArchive as _ZipArchive;
 use PharData as _PharData;
 
-$config = config('rfm');
-$version = config('rfm.version');
+$config = config('responsivefilemanager');
+$version = config('responsivefilemanager.version');
 
 
 $languages = include __DIR__.'/../I18N/languages.php';

@@ -49,7 +49,7 @@ class UnitTests extends TestCase
         $this->application_mock->shouldReceive('publishes')
                                ->once()
                                ->with([
-                                   'resources/filemanager/ajax_calls.php',
+                                   'resources/filemanager/ajax_calls',
                                ])
                                ->andReturnNull();
 
