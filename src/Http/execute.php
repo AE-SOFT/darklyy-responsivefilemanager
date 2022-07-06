@@ -6,7 +6,7 @@ use \Illuminate\Support\Facades\Request;
 use \Darkeum\ResponsiveFileManager\RFM;
 use \Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-$config = config('rfm');
+$config = config('responsivefilemanager');
 
 /**
  * Check RF session
@@ -23,7 +23,7 @@ if (!RFM::checkRelativePath($_POST['path'])) {
 
 $ftp = RFM::ftpCon($config);
 
-$base = config('rfm.current_path');
+$base = config('responsivefilemanager.current_path');
 
 $path = $base . request()->post('path');
 
@@ -264,11 +264,11 @@ if (isset($_GET['action'])) {
             break;
 
         case 'rename_file':
-            if (config('rfm.rename_files')) {
-                $name = RFM::fixGetParams($name, config('rfm'));
+            if (config('responsivefilemanager.rename_files')) {
+                $name = RFM::fixGetParams($name, config('responsivefilemanager'));
                 if (!empty($name)) {
                     // Rename File
-                    if (!RFM::renameFile($path, $name, $ftp, config('rfm'))) {
+                    if (!RFM::renameFile($path, $name, $ftp, config('responsivefilemanager'))) {
                         RFM::response(__('Rename_existing_file') . RFM::addErrorLocation())->send();
                         exit;
                     }
@@ -276,13 +276,13 @@ if (isset($_GET['action'])) {
                     $fileExt = substr(strrchr(basename($path), '.'), 1);
                     //Rename file thumb if is image
                     if (preg_match('/(gif|jpe?g|png)$/i', $fileExt)) {
-                        RFM::renameFile($path_thumb, $name, $ftp, config('rfm'));
+                        RFM::renameFile($path_thumb, $name, $ftp, config('responsivefilemanager'));
                     }
 
-                    if (config('rfm.fixed_image_creation')) {
+                    if (config('responsivefilemanager.fixed_image_creation')) {
                         $info = pathinfo($path);
 
-                        foreach (config('rfm.fixed_path_from_filemanager') as $k => $paths) {
+                        foreach (config('responsivefilemanager.fixed_path_from_filemanager') as $k => $paths) {
                             if ($paths != "" && $paths[strlen($paths) - 1] != "/") {
                                 $paths .= "/";
                             }
@@ -291,21 +291,21 @@ if (isset($_GET['action'])) {
                                 $info['dirname'] . "/",
                                 '',
                                 0,
-                                strlen(config('rfm.current_path'))
+                                strlen(config('responsivefilemanager.current_path'))
                             );
                             if (file_exists(
-                                $base_dir . config('rfm.fixed_image_creation_name_to_prepend.' . $k) .
-                                    $info['filename'] . config('rfm.fixed_image_creation_to_append.' . $k) .
+                                $base_dir . config('responsivefilemanager.fixed_image_creation_name_to_prepend.' . $k) .
+                                    $info['filename'] . config('responsivefilemanager.fixed_image_creation_to_append.' . $k) .
                                     "." . $info['extension']
                             )) {
                                 RFM::renameFile(
-                                    $base_dir . config('rfm.fixed_image_creation_name_to_prepend.' . $k) .
-                                        $info['filename'] . config('rfm.fixed_image_creation_to_append.' . $k) .
+                                    $base_dir . config('responsivefilemanager.fixed_image_creation_name_to_prepend.' . $k) .
+                                        $info['filename'] . config('responsivefilemanager.fixed_image_creation_to_append.' . $k) .
                                         "." . $info['extension'],
-                                    config('rfm.fixed_image_creation_name_to_prepend.' . $k) . $name .
-                                        config('rfm.fixed_image_creation_to_append.' . $k),
+                                    config('responsivefilemanager.fixed_image_creation_name_to_prepend.' . $k) . $name .
+                                        config('responsivefilemanager.fixed_image_creation_to_append.' . $k),
                                     $ftp,
-                                    config('rfm')
+                                    config('responsivefilemanager')
                                 );
                             }
                         }

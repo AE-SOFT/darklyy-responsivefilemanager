@@ -164,7 +164,7 @@ class FileManagerServiceProvider extends PackageServiceProvider
 //         _Blade::directive(
 //             'filemanager_get_key',
 //             function () {
-//                 $o = isset(config('rfm.access_keys')[0]) ? config('rfm.access_keys')[0] : '';//phpcs:ignore
+//                 $o = isset(config('responsivefilemanager.access_keys')[0]) ? config('responsivefilemanager.access_keys')[0] : '';//phpcs:ignore
 //                 return urlencode($o);
 //             }
 //         );

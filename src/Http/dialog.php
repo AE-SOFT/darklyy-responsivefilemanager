@@ -1181,7 +1181,7 @@ $get_params = http_build_query($get_params);
                                             <i class="icon-pencil <?php if (!$config['rename_folders'] || $file_prevent_rename) {
                                                                         echo 'icon-white';
                                                                     } ?>"></i></a>
-                                        <a href="javascript:void('')" class="tip-left erase-button btn-danger btn-large <?php if ($config['delete_folders'] && !$file_prevent_delete) {
+                                        <a href="javascript:void('')"  class="tip-left erase-button <?php if ($config['delete_folders'] && !$file_prevent_delete) {
                                                                                                                             echo "delete-folder";
                                                                                                                         } ?>" title="<?php echo __('Erase') ?>" data-confirm="<?php echo __('Confirm_Folder_del'); ?>">
                                             <i class="icon-trash <?php if (!$config['delete_folders'] || $file_prevent_delete) {
@@ -1604,6 +1604,7 @@ $get_params = http_build_query($get_params);
                 disabled: true
             });
         }
+        $(".sorting-btn").dropdown()
     </script>
     <div id="version" style="display: none;"><?php echo $composerVersion; ?></div>
 </body>

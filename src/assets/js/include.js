@@ -739,7 +739,7 @@ var encodeURL, show_animation, hide_animation, apply, apply_none, apply_img, app
         // info btn
         jQuery('#info').on('click', function () {
             bootbox.alert('<div class="text-center"><br>\
-                <img src="/vendor/responsivefilemanager/img/logo.png" alt="responsive filemanager" /><br><br>\
+                <img src="/public/vendor/responsivefilemanager/img/logo.png" alt="responsive filemanager" /><br><br>\
                 <p><strong>RESPONSIVE filemanager v.' + version + '</strong><br>\
                 <a href="http://www.responsivefilemanager.com">responsivefilemanager.com</a><br>\
                 <p>Copyright © <a href="http://www.tecrail.com" alt="tecrail">Tecrail</a> - Alberto Peripolli. All rights reserved.</p><br>\
@@ -748,9 +748,7 @@ var encodeURL, show_animation, hide_animation, apply, apply_none, apply_img, app
                 This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/">Creative Commons Attribution - NonCommercial 3.0 Unported License</a>.</small >\
                 </p></div>\
                 <div class="text-center">\
-                <p><strong>Laravel adpatation&nbsp;<a href="https://jeremydev.ovh">Jérémy Munsch</a></strong><br>\
-                <a href="https://github.com/Kwaadpepper/laravel-responsivefilemanager">Laravel Responsive Filemanager</a><strong>&nbsp;v.'+ $('#version').text() + '</strong><br>\
-                <a href="https://github.com/Kwaadpepper/laravel-responsivefilemanager/blob/master/LICENSE">Licence MIT</a></p>\
+                <p><strong>Адаптация под Darklyy &nbsp;<a href="https://darkeum.ru">Комаров Иван (Darkeum)</a></strong><br>                <a href="https://github.com/darkeum/darklyy-responsivefilemanager">Darklyy Responsive Filemanager</a><strong>&nbsp;v.'+e("#version").text()+'</strong><br>                <a href="https://github.com/darkeum/darklyy-responsivefilemanager/blob/master/LICENSE">Licence MIT</a></p>\
                 </div > ');
         });
 
@@ -782,7 +780,7 @@ var encodeURL, show_animation, hide_animation, apply, apply_none, apply_img, app
                     var folder_path = jQuery('#sub_folder').val() + jQuery('#fldr_value').val();
                     $.ajax({
                         type: "POST",
-                        url: "execute.php?action=create_folder",
+                        url: "execute?action=create_folder",
                         data: {
                             path: folder_path,
                             name: name,
@@ -1040,7 +1038,7 @@ var encodeURL, show_animation, hide_animation, apply, apply_none, apply_img, app
                             // post ajax
                             $.ajax({
                                 type: "POST",
-                                url: "execute.php?action=create_file",
+                                url: "execute?action=create_file",
                                 data: {
                                     path: folder_path,
                                     name: newFileName,
@@ -1095,7 +1093,7 @@ var encodeURL, show_animation, hide_animation, apply, apply_none, apply_img, app
                         // post ajax
                         $.ajax({
                             type: "POST",
-                            url: "execute.php?action=save_text_file",
+                            url: "execute?action=save_text_file",
                             data: {
                                 path: full_path,
                                 new_content: newContent,
@@ -1247,7 +1245,7 @@ var encodeURL, show_animation, hide_animation, apply, apply_none, apply_img, app
                             // post ajax
                             $.ajax({
                                 type: "POST",
-                                url: "execute.php?action=chmod",
+                                url: "execute?action=chmod",
                                 data: {
                                     path: full_path,
                                     new_mode: newPerm,
@@ -1391,7 +1389,7 @@ var encodeURL, show_animation, hide_animation, apply, apply_none, apply_img, app
 
                 $.ajax({
                     type: "POST",
-                    url: "execute.php?action=paste_clipboard",
+                    url: "execute?action=paste_clipboard",
                     data: {
                         path: folder_path,
                         _token: jQuery('meta[name="csrf-token"]').attr('content')
@@ -1451,7 +1449,7 @@ var encodeURL, show_animation, hide_animation, apply, apply_none, apply_img, app
 
                 $.ajax({
                     type: "POST",
-                    url: "execute.php?action=paste_clipboard",
+                    url: "execute?action=paste_clipboard",
                     data: {
                         path: folder_path,
                         _token: jQuery('meta[name="csrf-token"]').attr('content')
@@ -2011,7 +2009,7 @@ var encodeURL, show_animation, hide_animation, apply, apply_none, apply_img, app
             name = fix_filename(name);
             $.ajax({
                 type: "POST",
-                url: "execute.php?action=" + action,
+                url: "execute?action=" + action,
                 data: {
                     path: file,
                     name: name.replace('/', ''),
@@ -2036,7 +2034,7 @@ var encodeURL, show_animation, hide_animation, apply, apply_none, apply_img, app
             name = fix_filename(name);
             $.ajax({
                 type: "POST",
-                url: "execute.php?action=" + action,
+                url: "execute?action=" + action,
                 data: {
                     path: files[0],
                     paths: files,

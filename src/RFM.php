@@ -110,7 +110,7 @@ class RFM
     public static function ftpIsDir($ftp, $path)
     {
         try {
-            return $ftp->chdir("/" . RFM::cleanPath(config('rfm.ftp_base_folder') . $path));
+            return $ftp->chdir("/" . RFM::cleanPath(config('responsivefilemanager.ftp_base_folder') . $path));
         } catch (\Throwable $th) {
             return false;
         }
@@ -283,7 +283,7 @@ class RFM
     {
         if ($ftp) {
             try {
-                $ftp->rmdir('/' . config('rfm.ftp_base_folder') . '/' . $dir);
+                $ftp->rmdir('/' . config('responsivefilemanager.ftp_base_folder') . '/' . $dir);
                 return true;
             } catch (\Exception $e) {
                 if (!FM_DEBUG_ERROR_MESSAGE) {
@@ -365,8 +365,8 @@ class RFM
         if ($ftp) {
             try {
                 return $ftp->rename(
-                    "/" . RFM::cleanPath(config('rfm.ftp_base_folder') . $old_path),
-                    "/" . RFM::cleanPath(config('rfm.ftp_base_folder') . $new_path)
+                    "/" . RFM::cleanPath(config('responsivefilemanager.ftp_base_folder') . $old_path),
+                    "/" . RFM::cleanPath(config('responsivefilemanager.ftp_base_folder') . $new_path)
                 );
             } catch (\Exception $e) {
                 if (!FM_DEBUG_ERROR_MESSAGE) {
@@ -402,14 +402,14 @@ class RFM
         $name = self::fixFilename($name, $config, true);
         $new_path = self::fixDirname($old_path) . "/" . $name;
         if ($ftp) {
-            if ($ftp->chdir("/" . RFM::cleanPath(config('rfm.ftp_base_folder') . $old_path))) {
-                if (@$ftp->chdir("/" . RFM::cleanPath(config('rfm.ftp_base_folder') . $new_path))) {
+            if ($ftp->chdir("/" . RFM::cleanPath(config('responsivefilemanager.ftp_base_folder') . $old_path))) {
+                if (@$ftp->chdir("/" . RFM::cleanPath(config('responsivefilemanager.ftp_base_folder') . $new_path))) {
                     return false;
                 }
                 try {
                     return $ftp->rename(
-                        "/" . RFM::cleanPath(config('rfm.ftp_base_folder') . $old_path),
-                        "/" . RFM::cleanPath(config('rfm.ftp_base_folder') . $new_path)
+                        "/" . RFM::cleanPath(config('responsivefilemanager.ftp_base_folder') . $old_path),
+                        "/" . RFM::cleanPath(config('responsivefilemanager.ftp_base_folder') . $new_path)
                     );
                 } catch (\Exception $e) {
                     if (!FM_DEBUG_ERROR_MESSAGE) {
@@ -515,7 +515,7 @@ class RFM
      */
     public static function folderInfo($path, $count_hidden = true)
     {
-        $config = config('rfm');
+        $config = config('responsivefilemanager');
         $total_size = 0;
         $files = scandir($path);
         $cleanPath = rtrim($path, '/') . '/';
@@ -551,7 +551,7 @@ class RFM
      */
     public static function filescount($path, $count_hidden = true)
     {
-        $config = config('rfm');
+        $config = config('responsivefilemanager');
         $total_count = 0;
         $files = scandir($path);
         $cleanPath = rtrim($path, '/') . '/';
@@ -583,7 +583,7 @@ class RFM
      */
     public static function checkresultingsize($sizeAdded)
     {
-        $config = config('rfm');
+        $config = config('responsivefilemanager');
 
         if ($config['MaxSizeTotal'] !== false && is_int($config['MaxSizeTotal'])) {
             list($sizeCurrentFolder, $fileCurrentNum, $foldersCurrentCount) = self::folderInfo(
@@ -608,7 +608,7 @@ class RFM
     public static function createFolder($path = null, $path_thumbs = null, $ftp = null, $config = null)
     {
         if ($ftp) {
-            return $ftp->mkdir('/' . config('rfm.ftp_base_folder') . '/' . $path) && $ftp->mkdir('/' . config('rfm.ftp_base_folder') . '/' . $path_thumbs);
+            return $ftp->mkdir('/' . config('responsivefilemanager.ftp_base_folder') . '/' . $path) && $ftp->mkdir('/' . config('responsivefilemanager.ftp_base_folder') . '/' . $path_thumbs);
         } else {
             if (file_exists($path) || file_exists($path_thumbs)) {
                 return false;
@@ -1316,7 +1316,7 @@ class RFM
             // CKEDITOR hack prevent JS undefined as $_GET lang
             ($l = request()->get('lang')) !== 'undefined' ? $l : null,
             session('RF.language'),
-            config('rfm.default_language'),
+            config('responsivefilemanager.default_language'),
             request()->getPreferredLanguage(array_keys($availableLangs)),
             app()->getLocale()
         ]));
@@ -1396,7 +1396,7 @@ class RFM
             exit;
         }
 
-        if (!($ftp = self::ftpCon(config('rfm')))) {
+        if (!($ftp = self::ftpCon(config('responsivefilemanager')))) {
             if (!FM_DEBUG_ERROR_MESSAGE) {
                 throw new NotFoundHttpException();
             }
@@ -1407,7 +1407,7 @@ class RFM
         $name = $param['name'];
         $info = pathinfo($param['path']);
 
-        if (!self::checkExtension($info['extension'], config('rfm'))) {
+        if (!self::checkExtension($info['extension'], config('responsivefilemanager'))) {
             if (!FM_DEBUG_ERROR_MESSAGE) {
                 throw new NotFoundHttpException();
             }
@@ -1415,7 +1415,7 @@ class RFM
             exit;
         }
 
-        $file_path = config('rfm.ftp_base_folder') . '/' . $param['path'];
+        $file_path = config('responsivefilemanager.ftp_base_folder') . '/' . $param['path'];
 
         $local_file_path_to_download = "";
         // make sure the file exists

@@ -22,18 +22,18 @@ if (strpos(request()->post('name'), '/') !== false) {
     exit;
 }
 
-$ftp = RFM::ftpCon(config('rfm'));
+$ftp = RFM::ftpCon(config('responsivefilemanager'));
 
 if ($ftp) {
-    $path = config('rfm.ftp_base_folder') .  config('rfm.upload_dir') . request()->post('path');
+    $path = config('responsivefilemanager.ftp_base_folder') .  config('responsivefilemanager.upload_dir') . request()->post('path');
 } else {
-    $path = config('rfm.current_path') . request()->post('path');
+    $path = config('responsivefilemanager.current_path') . request()->post('path');
 }
 
 $name = request()->post('name');
 $info = pathinfo($name);
 
-if (!RFM::checkExtension($info['extension'], config('rfm'))) {
+if (!RFM::checkExtension($info['extension'], config('responsivefilemanager'))) {
     RFM::response(__('wrong extension') . RFM::addErrorLocation(), 400)->send();
     exit;
 }
