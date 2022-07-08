@@ -67,6 +67,7 @@ class UploadHandler
 
     public function __construct($ftp, $options = null, $initialize = true, $error_messages = null)
     {
+    
         $this->response = array();
         $this->options = array(
             'script_url' => $this->getFullUrl() . '/' . $this->basename($this->getServerVar('SCRIPT_NAME')),
@@ -277,6 +278,7 @@ class UploadHandler
 
     protected function getUploadPath($file_name = null, $version = null)
     {
+      
         $file_name = $file_name ? $file_name : '';
         if (empty($version)) {
             $version_path = '';
@@ -1281,6 +1283,7 @@ class UploadHandler
         if ($this->validate($uploaded_file, $file, $error, $index)) {
             $this->handleFormData($file, $index);
             $upload_dir = $this->getUploadPath();
+           
             if (!is_dir($upload_dir)) {
                 mkdir($upload_dir, $this->options['mkdir_mode'], true);
             }
