@@ -19,7 +19,7 @@ if (!session()->get('RF.composerVersion')) {
 
 $time = time();
 
-$vendor_path = parse_url(asset('public/vendor/responsivefilemanager') . '/')['path'];
+$vendor_path = parse_url(asset('vendor/responsivefilemanager') . '/')['path'];
 
 
 // if (FM_USE_ACCESS_KEYS == true) {
