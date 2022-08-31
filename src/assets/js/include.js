@@ -739,7 +739,7 @@ var encodeURL, show_animation, hide_animation, apply, apply_none, apply_img, app
         // info btn
         jQuery('#info').on('click', function () {
             bootbox.alert('<div class="text-center"><br>\
-                <img src="/public/vendor/responsivefilemanager/img/logo.png" alt="responsive filemanager" /><br><br>\
+                <img src="/vendor/responsivefilemanager/img/logo.png" alt="responsive filemanager" /><br><br>\
                 <p><strong>RESPONSIVE filemanager v.' + version + '</strong><br>\
                 <a href="http://www.responsivefilemanager.com">responsivefilemanager.com</a><br>\
                 <p>Copyright © <a href="http://www.tecrail.com" alt="tecrail">Tecrail</a> - Alberto Peripolli. All rights reserved.</p><br>\

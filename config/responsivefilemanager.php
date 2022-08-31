@@ -445,13 +445,13 @@ $config = array(
     'header.border'                        => '0px',
 
     // main icons
-    'menu.normalIcon.path'                 => '/public/vendor/responsivefilemanager' . '/svg/icon-d.svg',
+    'menu.normalIcon.path'                 => '/vendor/responsivefilemanager' . '/svg/icon-d.svg',
     'menu.normalIcon.name'                 => 'icon-d',
-    'menu.activeIcon.path'                 => '/public/vendor/responsivefilemanager' . '/svg/icon-b.svg',
+    'menu.activeIcon.path'                 => '/vendor/responsivefilemanager' . '/svg/icon-b.svg',
     'menu.activeIcon.name'                 => 'icon-b',
-    'menu.disabledIcon.path'               => '/public/vendor/responsivefilemanager' . '/svg/icon-a.svg',
+    'menu.disabledIcon.path'               => '/vendor/responsivefilemanager' . '/svg/icon-a.svg',
     'menu.disabledIcon.name'               => 'icon-a',
-    'menu.hoverIcon.path'                  => '/public/vendor/responsivefilemanager' . '/svg/icon-c.svg',
+    'menu.hoverIcon.path'                  => '/vendor/responsivefilemanager' . '/svg/icon-c.svg',
     'menu.hoverIcon.name'                  => 'icon-c',
     'menu.iconSize.width'                  => '24px',
     'menu.iconSize.height'                 => '24px',
@@ -461,9 +461,9 @@ $config = array(
     'submenu.partition.color'              => '#000000',
 
     // submenu icons
-    'submenu.normalIcon.path'              => '/public/vendor/responsivefilemanager' . '/svg/icon-d.svg',
+    'submenu.normalIcon.path'              => '/vendor/responsivefilemanager' . '/svg/icon-d.svg',
     'submenu.normalIcon.name'              => 'icon-d',
-    'submenu.activeIcon.path'              => '/public/vendor/responsivefilemanager' . '/svg/icon-b.svg',
+    'submenu.activeIcon.path'              => '/vendor/responsivefilemanager' . '/svg/icon-b.svg',
     'submenu.activeIcon.name'              => 'icon-b',
     'submenu.iconSize.width'               => '32px',
     'submenu.iconSize.height'              => '32px',
