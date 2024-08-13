@@ -46,5 +46,5 @@ if (basename(request()->server('REQUEST_URI')) == "dialog") {
 $availableLangs = include __DIR__ . '/../I18N/languages.php';
 
 $preferredLang = RFM::getPreferredLanguage($availableLangs);
-app()->setLocale($preferredLang);
+// app()->setLocale($preferredLang);
 session()->put('RF.language', $preferredLang);
